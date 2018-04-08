@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name"> Bloco Social </string>
+        
+    <string name="pass_hint"> Senha ... </string>
+        
+    <string name="email_hint"> Seu email ... </string>
+        
+    <string name="login_logo_desc"> Página de Login do Logo </string>
+        
+    <string name="login_btn_text"> Login na conta </string>
+    
+    <string name="login_reg_btn_text"> Precisa de uma nova conta? </string>
+        
+    <string name="action_search_text"> Pesquisar </string>
+        
+    <string name="action_setting_text"> Configurações da conta </string>
+    
+    <string name="action_logout_text"> Efetuar logout </string>
+        
+    <string name="reg_btn_text"> Criar nova conta </string>
+    
+    <string name="reg_login_text"> Já tem uma conta? </string>
+        
+    <string name="reg_pass_text"> Senha ... </string>
+        
+    <string name="reg_confirm_pass_text"> Confirme a senha ... </string>
+        
+    <string name="setup_name_hint"> Seu nome ... </string>
+        
+    <string name="setup_save_btn"> Salvar configurações da conta </string>
+    
+    <string name="setup_name_hint_text"> Seu nome ... </string>
+        
+    <string name="setup_btn_name_text"> Salvar configurações da conta </string>
+    
+    <string name="post_desc_hint"> Adicionar descrição ... </string>
+        
+    <string name="new_post_btn_hint"> Postar Blog </string>
+        
+    <string name="bottom_home_text"> Home</string>
+        
+    <string name="bottom_notification_text">Notificação </string>
+        
+    <string name="bottom_ac_text"> Conta </string>
+        
+    <string name="hello_blank_fragment"> Olá fragmento em branco </string>
+    <string name="menu_title_new_post">Novo Post</string>
+    <string name="menu_title_friends">Amigo</string>
+    <string name="menu_title_profile">Perfil</string>
+    <string name="menu_title_follower">Seguidores</string>
+
+</resources>

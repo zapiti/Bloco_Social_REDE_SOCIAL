@@ -1,1 +1,0 @@
-# Bloco_Social_REDE_SOCIAL
