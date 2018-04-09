@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         mainToolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(mainToolbar);
 
-        getSupportActionBar().setTitle("Photo Blog");
+
 
         if(mAuth.getCurrentUser() != null) {
 
@@ -77,26 +77,31 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.bottom_action_home:
 
                             replaceFragment(homeFragment, currentFragment);
+                            getSupportActionBar().setTitle(getString(R.string.bottom_home_text));
                             return true;
 
                         case R.id.bottom_action_profile:
 
                             replaceFragment(accountFragment, currentFragment);
+                            getSupportActionBar().setTitle(getString(R.string.menu_title_profile));
                             return true;
 
                         case R.id.bottom_action_friends:
 
                             replaceFragment(notificationFragment, currentFragment);
+                            getSupportActionBar().setTitle(getString(R.string.menu_title_friends));
                             return true;
 
                         case R.id.bottom_action_new_post:
 
                             replaceFragment(notificationFragment, currentFragment);
+                            getSupportActionBar().setTitle(getString(R.string.menu_title_new_post));
                             return true;
 
                         case R.id.bottom_action_follower:
 
                             replaceFragment(notificationFragment, currentFragment);
+                            getSupportActionBar().setTitle(getString(R.string.menu_title_follower));
                             return true;
 
                         default:

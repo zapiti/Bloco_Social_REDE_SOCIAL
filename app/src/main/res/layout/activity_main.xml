@@ -24,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
+
         android:clickable="true"
         android:focusable="true"
         app:layout_constraintBottom_toTopOf="@+id/mainBottomNav"
@@ -35,10 +36,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:menu="@menu/bottom_menu"
+        app:itemBackground="@color/primaryColor"
+         app:itemIconTint="@color/primaryTextColor"
+        app:itemTextColor="@color/primaryTextColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:backgroundTint="@color/colorPrimaryDark"/>
+        android:background="?android:attr/windowBackground"
+        />
 
     <FrameLayout
         android:id="@+id/main_container"

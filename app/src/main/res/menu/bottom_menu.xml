@@ -16,7 +16,7 @@
         android:id="@+id/bottom_action_new_post"
         android:icon="@drawable/ic_plus_menu"
         android:title="@string/menu_title_new_post"
-        />
+      />
     <item
         android:id="@+id/bottom_action_friends"
         android:icon="@drawable/ic_friends"
