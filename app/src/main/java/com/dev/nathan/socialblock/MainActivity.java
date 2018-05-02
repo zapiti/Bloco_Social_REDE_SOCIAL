@@ -22,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.lang.reflect.Field;
 
@@ -39,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
 
     private HomeFragment homeFragment;
     private FriendsFragment notificationFragment;
-    private ProfileFragment accountFragment;
-    private SetupActivity setupFragment;
+    private ProfileFragment profileFragment;
+    private NewPostFragment newPostFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
         mainToolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(mainToolbar);
+        getSupportActionBar().setIcon(R.mipmap.ic_logo);
 
 
 
@@ -62,7 +64,8 @@ public class MainActivity extends AppCompatActivity {
             // FRAGMENTS
             homeFragment = new HomeFragment();
             notificationFragment = new FriendsFragment();
-            accountFragment = new ProfileFragment();
+            profileFragment = new ProfileFragment();
+            newPostFragment = new NewPostFragment();
 
             initializeFragment();
             disableShiftMode(mainbottomNav);
@@ -82,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
                         case R.id.bottom_action_profile:
 
-                            replaceFragment(accountFragment, currentFragment);
+                            replaceFragment(profileFragment, currentFragment);
                             getSupportActionBar().setTitle(getString(R.string.menu_title_profile));
                             return true;
 
@@ -94,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
                         case R.id.bottom_action_new_post:
 
-                            replaceFragment(notificationFragment, currentFragment);
+                            replaceFragment(newPostFragment, currentFragment);
                             getSupportActionBar().setTitle(getString(R.string.menu_title_new_post));
                             return true;
 
@@ -114,16 +117,7 @@ public class MainActivity extends AppCompatActivity {
             });
 
 
-            addPostBtn = findViewById(R.id.add_post_btn);
-            addPostBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
 
-                    Intent newPostIntent = new Intent(MainActivity.this, NewPostActivity.class);
-                    startActivity(newPostIntent);
-
-                }
-            });
 
         }
 
@@ -189,41 +183,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return true;
-
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-
-            case R.id.action_logout_btn:
-                logOut();
-               return true;
-
-            case R.id.action_settings_btn:
-
-                Intent settingsIntent = new Intent(MainActivity.this, SetupActivity.class);
-                startActivity(settingsIntent);
-
-                return true;
-
-
-               default:
-                   return false;
-
-
-        }
-
-    }
 
     private void logOut() {
-
 
         mAuth.signOut();
         sendToLogin();
@@ -243,10 +205,12 @@ public class MainActivity extends AppCompatActivity {
 
         fragmentTransaction.add(R.id.main_container, homeFragment);
         fragmentTransaction.add(R.id.main_container, notificationFragment);
-        fragmentTransaction.add(R.id.main_container, accountFragment);
+        fragmentTransaction.add(R.id.main_container, profileFragment);
+        fragmentTransaction.add(R.id.main_container, newPostFragment);
 
+        fragmentTransaction.hide(newPostFragment);
         fragmentTransaction.hide(notificationFragment);
-        fragmentTransaction.hide(accountFragment);
+        fragmentTransaction.hide(profileFragment);
 
         fragmentTransaction.commit();
 
@@ -257,13 +221,15 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         if(fragment == homeFragment){
 
-            fragmentTransaction.hide(accountFragment);
+            fragmentTransaction.hide(newPostFragment);
+            fragmentTransaction.hide(profileFragment);
             fragmentTransaction.hide(notificationFragment);
 
         }
 
-        if(fragment == accountFragment){
+        if(fragment == profileFragment){
 
+            fragmentTransaction.hide(newPostFragment);
             fragmentTransaction.hide(homeFragment);
             fragmentTransaction.hide(notificationFragment);
 
@@ -271,8 +237,16 @@ public class MainActivity extends AppCompatActivity {
 
         if(fragment == notificationFragment){
 
+            fragmentTransaction.hide(newPostFragment);
             fragmentTransaction.hide(homeFragment);
-            fragmentTransaction.hide(accountFragment);
+            fragmentTransaction.hide(profileFragment);
+
+        }
+        if(fragment == newPostFragment){
+
+            fragmentTransaction.hide(notificationFragment);
+            fragmentTransaction.hide(homeFragment);
+            fragmentTransaction.hide(profileFragment);
 
         }
         fragmentTransaction.show(fragment);
@@ -281,5 +255,8 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
 
     }
+
+
+
 
 }

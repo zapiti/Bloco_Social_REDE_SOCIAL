@@ -8,17 +8,17 @@
     <string name="login_logo_desc"> Página de Login do Logo </string>
         
     <string name="login_btn_text"> Login na conta </string>
-    
+        
     <string name="login_reg_btn_text"> Precisa de uma nova conta? </string>
         
     <string name="action_search_text"> Pesquisar </string>
         
     <string name="action_setting_text"> Configurações da conta </string>
-    
+        
     <string name="action_logout_text"> Efetuar logout </string>
         
     <string name="reg_btn_text"> Criar nova conta </string>
-    
+        
     <string name="reg_login_text"> Já tem uma conta? </string>
         
     <string name="reg_pass_text"> Senha … </string>
@@ -28,11 +28,11 @@
     <string name="setup_name_hint"> Seu nome … </string>
         
     <string name="setup_save_btn"> Salvar configurações da conta </string>
-    
+        
     <string name="setup_name_hint_text"> Seu nome … </string>
         
-    <string name="setup_btn_name_text"> Salvar configurações da conta </string>
-    
+    <string name="setup_btn_name_text"> Salvar Alteraçoes</string>
+        
     <string name="post_desc_hint"> Adicionar descrição … </string>
         
     <string name="new_post_btn_hint"> Postar Blog </string>
@@ -48,5 +48,6 @@
     <string name="menu_title_friends">Amigos</string>
     <string name="menu_title_profile">Perfil</string>
     <string name="menu_title_follower">Seguidores</string>
+    <string name="facebook_app_id">418899268552916</string>
 
 </resources>

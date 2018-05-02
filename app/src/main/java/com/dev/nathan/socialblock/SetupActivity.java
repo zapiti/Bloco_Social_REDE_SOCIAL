@@ -11,11 +11,11 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -29,6 +29,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -45,6 +46,7 @@ import id.zelory.compressor.Compressor;
 public class SetupActivity extends AppCompatActivity {
 
     private CircleImageView setupImage;
+    private RoundedImageView setupImagePlaceHoulder;
     private Uri mainImageURI = null;
 
     private String user_id;
@@ -64,7 +66,7 @@ public class SetupActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_setup);
+        setContentView(R.layout.fragment_profile);
 
 
 
@@ -76,9 +78,11 @@ public class SetupActivity extends AppCompatActivity {
 
 
         setupImage = findViewById(R.id.setup_image);
+        setupImagePlaceHoulder = findViewById(R.id.setup_image_placehoulder);
         setupName = findViewById(R.id.setup_name);
         setupBtn = findViewById(R.id.setup_btn);
         setupProgress = findViewById(R.id.setup_progress);
+
 
         setupProgress.setVisibility(View.VISIBLE);
         setupBtn.setEnabled(false);
@@ -276,6 +280,7 @@ public class SetupActivity extends AppCompatActivity {
 
                 mainImageURI = result.getUri();
                 setupImage.setImageURI(mainImageURI);
+                setupImagePlaceHoulder.setImageURI(mainImageURI);
 
                 isChanged = true;
 

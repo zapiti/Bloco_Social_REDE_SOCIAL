@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -47,8 +49,9 @@ import id.zelory.compressor.Compressor;
 
 public class  ProfileFragment extends Fragment {
 
-    private CircleImageView setupImage;
-    private Uri mainImageURI = null;
+  private    CircleImageView setupImage;
+   private RoundedImageView setupImagePlaceHoulder;
+     Uri mainImageURI = null;
 
     private String user_id;
 
@@ -64,7 +67,7 @@ public class  ProfileFragment extends Fragment {
 
     private Bitmap compressedImageFile;
 
-    public ProfileFragment() {
+    public ProfileFragment()  {
         // Required empty public constructor
     }
 
@@ -73,7 +76,7 @@ public class  ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_setup, container, false);
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
         final Context context = view.getContext();
 
 
@@ -85,6 +88,7 @@ public class  ProfileFragment extends Fragment {
 
 
         setupImage = view.findViewById(R.id.setup_image);
+        setupImagePlaceHoulder = view.findViewById(R.id.setup_image_placehoulder);
         setupName = view.findViewById(R.id.setup_name);
         setupBtn = view.findViewById(R.id.setup_btn);
         setupProgress = view.findViewById(R.id.setup_progress);
@@ -99,19 +103,22 @@ public class  ProfileFragment extends Fragment {
                 if (task.isSuccessful()) {
 
                     if (task.getResult().exists()) {
-
-                        String name = task.getResult().getString("name");
-                        String image = task.getResult().getString("image");
-
-                        mainImageURI = Uri.parse(image);
-
-                        setupName.setText(name);
-
-                        RequestOptions placeholderRequest = new RequestOptions();
-                        placeholderRequest.placeholder(R.drawable.default_image);
-
-                        Glide.with(context).setDefaultRequestOptions(placeholderRequest).load(image).into(setupImage);
-
+//
+//                        String name = task.getResult().getString("name");
+//                        String image = task.getResult().getString("image");
+//
+//                        mainImageURI = Uri.parse(image);
+//
+//                        setupName.setText(name);
+//
+//                        RequestOptions placeholderRequest = new RequestOptions();
+//                        placeholderRequest.placeholder(R.drawable.default_image);
+//                        RequestOptions placeholderRequestF = new RequestOptions();
+//                        placeholderRequestF.placeholder(R.drawable.image_placeholder);
+//
+//                        Glide.with(context).setDefaultRequestOptions(placeholderRequest).load(image).into(setupImage);
+//                        Glide.with(context).setDefaultRequestOptions(placeholderRequestF).load(image).into(setupImagePlaceHoulder);
+//
 
                     }
 
@@ -247,9 +254,9 @@ return view;
                 if(task.isSuccessful()){
 
               Toast.makeText(getContext(), "The user Settings are updated.", Toast.LENGTH_LONG).show();
-//                    Intent mainIntent = new Intent(context, MainActivity.class);
-//                    startActivity(mainIntent);
-//                    finish();
+                    Intent mainIntent = new Intent(getContext(), MainActivity.class);
+                    startActivity(mainIntent);
+                    getActivity().finish();
 
                 } else {
 
@@ -271,7 +278,8 @@ return view;
         CropImage.activity()
                 .setGuidelines(CropImageView.Guidelines.ON)
                 .setAspectRatio(1, 1)
-                .start(getActivity());
+                .start(getActivity(),this);
+
 
     }
 
@@ -285,6 +293,7 @@ return view;
 
                 mainImageURI = result.getUri();
                 setupImage.setImageURI(mainImageURI);
+                setupImagePlaceHoulder.setImageURI(mainImageURI);
 
                 isChanged = true;
 
